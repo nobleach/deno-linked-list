@@ -103,4 +103,46 @@ export class LinkedList<T> {
     return `{ ${str}}`;
   }
 
+  removeFrom(index: number): T | null {
+    if (index > 0 && index > this.size) {
+      return null;
+    }
+
+    let curr: Node<T> | null = this.head;
+    let prev: Node<T> | null = curr;
+    let i = 0;
+
+    if (curr === null) {
+      return null;
+    }
+
+    // toss out current head pointer
+    if (index === 0) {
+      this.head = curr.next;
+    } else {
+      while (i < index) {
+        i++;
+        prev = curr;
+
+        if (curr !== null) {
+          curr = curr.next;
+        }
+      }
+
+      if (curr === null) {
+        return null;
+      }
+
+      // remove the element
+      if (prev !== null) {
+        prev.next = curr.next;
+      }
+    }
+
+    this.size--;
+
+    return curr.data;
+
+  }
+
 }
