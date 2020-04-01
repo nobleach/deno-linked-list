@@ -145,4 +145,29 @@ export class LinkedList<T> {
 
   }
 
+  removeElement(element: T): T | null {
+    let curr = this.head;
+    let prev = null;
+
+    while (curr !== null) {
+      if (curr.data === element) {
+        if (prev === null) {
+          this.head = curr.next;
+        } else {
+          prev.next = curr.next;
+        }
+        this.size--;
+
+        return curr.data;
+      }
+
+      prev = curr;
+      curr = curr.next;
+    }
+
+    return null;
+
+  }
+
+
 }
